@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#download-modal">
+        Download Total
+    </button>
+    <form action="" method="post" class="text-center" id="form2">
+        {% csrf_token %}
+        {{ form2.as_p }}
+        <input type="submit" value="Download" name="download" class="btn btn-info col-md-2">
+        <input type="submit" value="Show" name="show" class="btn btn-secondary col-md-2">
+    </form>
+    <div class="modal fade" id="download-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark">download orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-2">
+        {% if date %}
+            <table class="table table-striped" id="table_id">
+                <thead class="thead-dark">
+                <tr >
+                    <th scope="col">user</th>
+                    <th scope="col">paid</th>
+                    <th scope="col">created</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in date %}
+                    <tr>
+                        <th>{{ obj.user }}</th>
+                        <td>{% if obj.is_paid %}yes {% else %} no {% endif %}</td>
+                        <td>{{ obj.created_at }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    {#{% for contact in page_obj %}#}
+    {# Each "contact" is a Contact model object. #}
+    {#    {{ contact.full_name|upper }}<br>#}
+    {#    ...#}
+    {#{% endfor %}#}
+
+
+
+{% endblock %}

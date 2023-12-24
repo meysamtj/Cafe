@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Contact Us page
+{% endblock %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-center mt-5" dir="rtl">
+
+    <div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40 text-center">
+        <div class="order-details">
+            <div class="checkout-title mt--10 text-center mb-3">
+                <h2>سفارش شما</h2>
+            </div>
+            <div class="table-content table-responsive rounded-5">
+                <table class="table order-table order-table-2 mb-0">
+                    <thead >
+                    <tr>
+                        <th class="text-light" style="background-color: hotpink;">محصول</th>
+                        <th class="text-right text-light" style="background-color: hotpink;">قیمت نهایی</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+
+                    <tr>
+                        <th>{{ item.product_obj.item_name }}
+                            <strong><span>&#10005;</span>{{ item.quantity  }}</strong>
+                        </th>
+                        <td class="text-right">{{ item.product_obj.price }} تومان</td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                    <tr class="cart-subtotal">
+                        <th class="text-light" style="background-color: hotpink;">مجموع</th>
+                        <td class="text-right text-light" style="background-color: hotpink;">{{ cart.get_total_price }} تومان</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="checkout-payment">
+                <h2 class="mt-4 mb-1">روش پرداخت</h2>
+                <form action="{% url 'orders:create' %}" class="payment-form" method="post">
+                    {% csrf_token %}
+                    <div class="payment-group m-3">
+                        <div class="payment-radio">
+                            <input type="radio" value="bank" name="payment-method" id="bank" checked>
+                            <label class="payment-label" for="cheque">درگاه آنلاین زرین پال</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn text-light" style="background-color: hotpink;">  پرداخت </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

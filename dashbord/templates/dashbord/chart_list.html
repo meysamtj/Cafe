@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  chart
+{% endblock %}
+
+{% block content %}
+<div style="text-align: center;">
+<div class="mt-4">
+<h3>تعداد مشتریان بر اساس بازه سنی</h3>
+</div>
+<div class="" style="display: inline-block; width: 35%">
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: {{labels|safe}},
+        datasets: [{
+          label: 'age:',
+          data: {{data|safe}},
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</div>
+</div>
+{% endblock %}

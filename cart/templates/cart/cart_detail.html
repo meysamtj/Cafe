@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Shoppingcart
+{% endblock %}
+
+{% block content %}
+
+<div dir="rtl">
+    <!-- <div class="bg "></div> -->
+    <!-- Breadcrumb area Start -->
+    <div class="breadcrumb-area bg-color ptb--90 m-4" data-bg-color="#f6f6f6">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+                        <h1 class="page-title">سبد خرید</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb area End -->
+
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper">
+        <div class="page-content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 bg-white p-5 rounded-end-5">
+                        {% for item in cart %}
+                        <div class="mb-4">
+                            <div class="row align-items-center py-3 border-bottom d-flex justify-content-center">
+                            
+                            <div class="col-md-2 col-lg-2 col-xl-2 text-center">
+                                <a href="{% url 'cafemenu:item_detail' item.product_obj.slug %}"><img
+                                        class="small w-100 rounded-2"
+                                        src="{{ item.product_obj.main_image.url }}"></a>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xl-2 col-sm-5 text-center my-3">
+                                <h3 class="fs-5">
+                                    <a href="{% url 'cafemenu:item_detail' item.product_obj.slug %}">
+                                        {{item.product_obj.item_name }}</a>
+                                </h3>
+                            </div>
+                            <div class="col-md-2 col-lg-1 col-xl-1 offset-lg-1 col-sm-5 text-center my-3">
+                                <span class="product-price-wrapper">
+                                    <span class="money">{{ item.product_obj.price }}</span>
+                                </span>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-lg-3 col-xl-2 d-flex text-center align-items-center">
+                                <form class="d-flex" method="post" style="color: hotpink;"
+                                    action="{% url 'cart:cart_add' item.product_obj.id  %}">
+                                    {% csrf_token %}
+                                    <!-- <div class="row"> -->
+                                        <input type="number" class="quantity-input col-sm-6 m-0 p-0 text-center rounded-end-5"
+                                            style="border-color: hotpink" name="quantity" id="qty-1"
+                                            value="{{ item.quantity }}" min="1">
+                                        {{ item.product_update_quantity_form.inplace }}
+                                        <button class="col-8 small border-0 text-light rounded-start-5"
+                                            style="background-color: hotpink;" type="submit"><i
+                                                class="bi bi-twitter-x">ثبت تغییرات</i></button>
+                                    
+                                </form>
+                                
+                            </div>
+                            <div class="col-md-2 col-lg-1 col-xl-1 col-sm-4 align-items-center mx-3">
+                                <span class="product-price-wrapper">
+                                    <span class="money">{{ item.total_price }} تومان</span>
+                                </span>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-center m-4">
+                                <a class="p-2 rounded-5 text-light" href="{% url 'cart:cart_remove' item.product_obj.id %}" style="background-color: hotpink;"><i
+                                        class="bi bi-x-lg"></i>حذف</a>
+                            </div>
+                            
+                        </div>
+                        </div>
+
+
+                        <!-- <tr class="align-middle">
+                                                    <td class="text-left align-middle"><a
+                                                            href="{% url 'cart:cart_remove' item.product_obj.id %}"><i
+                                                            class="bi bi-x-lg"></i>حذف</a></td>
+                                                    <td class="product-thumbnail align-middle">
+                                                        <a href="{% url 'cafemenu:item_detail' item.product_obj.slug %}"><img class="small w-50 h-50 rounded-2" src="{{ item.product_obj.main_image.url }}"
+                                                        ></a>
+                                                    </td>
+                                                    <td class="product-name align-middle">
+                                                        <h3 class="fs-5">
+                                                            <a href="{% url 'cafemenu:item_detail' item.product_obj.slug %}">{{ item.product_obj.item_name }}</a>
+                                                        </h3>
+                                                    </td>
+                                                    <td class="product-price align-middle">
+                                                            <span class="product-price-wrapper">
+                                                                <span class="money">{{ item.product_obj.price }}</span>
+                                                            </span>
+                                                    </td>
+                                                    <td class="product-quantity align-middle">
+                                                        <form class="d-flex" method="post" action="{% url 'cart:cart_add' item.product_obj.id  %}">
+                                                            {% csrf_token %}
+                                                        <div class="row">
+                                                            <input type="number" class="quantity-input col-sm-4 m-0 p-0 text-center" style="border-color: hotpink;" name="quantity"
+                                                                   id="qty-1" value="{{ item.quantity }}" min="1">
+                                                            {{ item.product_update_quantity_form.inplace }}
+                                                            <button class="col-8 small border-0 text-light" style="background-color: hotpink;" type="submit"><i class="bi bi-twitter-x">ثبت تغییرات</i></button>
+                                                            </form>
+                                                        </div>
+                                                            
+                                                    </td>
+                                                    <td class="product-total-price align-middle">
+                                                            <span class="product-price-wrapper">
+                                                                <span class="money">{{ item.total_price }} تومان</span>
+                                                            </span>
+                                                    </td>
+                                                </tr> -->
+                        {% endfor %}
+
+                    
+                    <div class="row no-gutters mt-3">
+                        <div class="col-sm-6 text-sm-right">
+                            <button type="submit" class="btn cart-form__btn text-light" style="background-color: hotpink;">خالی
+                                کردن سبد خرید</button>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-lg-3 rounded-start-5 text-center" style="background-color: hotpink;">
+                        <div class="cart-collaterals">
+                            <div class="cart-totals">
+                                <h5 class="fs-2 font-bold my-5 text-light">مجموع</h5>
+                                    <div class="cart-calculator__item order-total my-5 py-5">
+                                        <div class="cart-calculator__item--head text-light">
+                                            <span class="fs-5">جمع کل</span>
+                                        </div>
+                                        <div class="cart-calculator__item--value">
+                                            <span class="product-price-wrapper">
+                                                <span class="money text-light">{{ cart.get_total_price }} تومان</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'orders:create' %}" class="btn btn-fullwidth bg-white btn-hover-2 my-5">
+                                ثبت سفارش
+                            </a>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            
+            </form>
+        </div>
+        
+    </div>
+</div>
+</div>
+</div>
+<!-- Main Content Wrapper Start -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Item Detail
+{% endblock %}
+
+
+{% block content %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5" dir="rtl">
+            <div class="row text-center">
+                <div class="col-md-5">
+                    <img class="card-img-top mb-5 mb-md-0" id="mainImage" src="{{ details.main_image.url }}"
+                         alt="{{ item_name }}"/>
+                    <div class="row mt-3 justify-content-center">
+                        {% for image in item_images %}
+                            <div class="col-3 mb-3" data-cro-id="pdp-album-open">
+                                <img class="img-fluid rounded-5" src="{{ image.sub_image.url }}"
+                                     alt="{{ details.item_name }}" width="100%" height="auto"
+                                     onclick="changeImage(this.src)"
+                                />
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-5 text-end">
+                    <h1 class="display-5 fw-bolder">{{ details.item_name }}</h1>
+                    <div class="fs-5 my-4">
+                        <span>{{ details.price }}</span>
+                    </div>
+                    {% for line in description_lines %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                    {% comment %} <p class="lead">{{ details.description }}</p> {% endcomment %}
+                    <div class="row align-items-center mt-4">
+                        {#                        <button class="col-md-1 btn-sm border-0 btn-link"#}
+                        {#                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">#}
+                        {#                            <i class="fas fa-plus"></i>#}
+                        {#                        </button>#}
+                        {#                        <input class="col-md-3 form-control text-center" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />#}
+                        {#                        <button class="col-md-1 btn-sm border-0 btn-link"#}
+                        {#                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">#}
+                        {#                            <i class="fas fa-minus"></i>#}
+                        {#                        </button>#}
+                        <form action="{% url 'cart:cart_add' details.id %}" method="post">
+                            {% csrf_token %}
+                            {{ add_to_cart_form|crispy }}
+                            {#                        <button class="btn" type="submit"> اضافه کردن به سبد خرید</button>#}
+                            <button class="col-sm-7 btn btn-outline-dark flex-shrink-0 me-3" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                اضافه کردن به سبد خرید
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Related items section-->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">محصولات مشابه</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for item in similar_item %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src={{ item.main_image.url }} alt="..."/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ item.item_name }}</h5>
+                                    <!-- Product reviews-->
+                                    {% comment %} <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div> {% endcomment %}
+                                    <!-- Product price-->
+                                    {{ item.price }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                            href="{% url 'cafemenu:item_detail' slug=item.slug %}">اضافه
+                                    کردن به سبد خرید</a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Category
+{% endblock %}
+
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid page-header mb-3">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">دسته بندی</h1>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Products Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row d-flex align-items-center text-center justify-content-center">
+            {% for item in category %}
+            <div class="col-lg-3 col-md-6 mb-4 pb-2 d-flex flex-column align-items-center text-center">
+                <div class="product-item d-flex flex-column text-center rounded mx-3">
+                    <a href="{% url 'cafemenu:category_detail' slug=item.slug %}"
+                            class="d-flex mt-4 justify-content-center rounded-circle w-100 h-100"
+                            >
+                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                        style="width: 150px; height: 150px;">
+                        <img class="rounded-circle w-100 h-100" src="{{ item.sub_image.url }}"
+                            alt="{{ item.category_name }}" style="object-fit: cover;">
+                        
+                        <h1 class="fs-6 mt-4" style="color: dimgrey;" >{{ item.category_name }}</h1>
+                        
+                    </div>
+                </a>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <div class="row d-flex align-items-center text-center"></div>
+        <div class="col-12 text-center">
+            <a href="#" class="btn btn-primary py-3 px-5 mt-3">بیشتر</a>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

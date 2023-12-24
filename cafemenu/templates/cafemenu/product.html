@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+
+
+{% block content %}
+
+        <!-- Header Start -->
+        <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+            <div class="container text-center py-5">
+                <h1 class="text-white display-3 mt-lg-5">همه‌ی قهوه‌ها</h1>
+                <div class="d-inline-flex align-items-center text-white">
+                    <p class="m-0"><a class="text-white" href="#">خانه</a></p>
+                    <i class="fa fa-circle px-3"></i>
+                    {% comment %} <p class="m-0">همه‌ی محصولات</p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    
+    
+        <!-- Products Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h1 class="section-title position-relative text-center mb-5">پیشنهادات ما برای عاشقان قهوه</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$90</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/iced_espresso.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">آیس اسپرسو</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$112</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/iced_latte.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">آیس لاته</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$115</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/mocha.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">موکا</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$132</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/mocha_frappe.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">فراپه‌ی موکا</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$120</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/iced_americano.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">آیس آمریکانو</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$95</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/cortado.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">کورتادو</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$125</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/macchiato.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">ماکیاتو</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                <h4 class="font-weight-bold text-white mb-0">$98</h4>
+                            </div>
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src={% static "img/Irish.jpg" %} style="object-fit: cover;">
+                            </div>
+                            <h5 class="font-weight-bold mb-4">آیریش</h5>
+                            <a href="#" class="btn btn-sm btn-secondary">سفارش</a>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <a href="#" class="btn btn-primary py-3 px-5">بیشتر</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Products End -->
+
+{% endblock content %}
